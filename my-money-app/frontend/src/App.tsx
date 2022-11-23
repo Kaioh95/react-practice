@@ -1,26 +1,39 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import "./styles/App.css"
+import 'font-awesome/css/font-awesome.min.css'
+import Header from './components/Header';
+import { LayoutContextProvider } from './contexts/LayoutContext';
+import { BrowserRouter as Router } from "react-router-dom"
+import SideBar from './components/SideBar';
+import Footer from './components/Footer';
+import MyMoneyRoutes from './pages/MyMoneyRoutes';
+import { DashboardContextProvider } from './contexts/DashboardContext';
+import { TabContextProvider } from './contexts/TabContext';
+import { BillingCyclesContextProvider } from './contexts/BillingCyclesContext';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	return (
+		<div className='App'>
+			<LayoutContextProvider>
+			<DashboardContextProvider>
+			<TabContextProvider>
+			<BillingCyclesContextProvider>
+				<Header/>
+				<div className='flexRow'>
+					<SideBar></SideBar>
+					<div className='container'>
+						<Router>
+							<MyMoneyRoutes/>
+						</Router>
+						<Footer/>
+					</div>
+				</div>
+			</BillingCyclesContextProvider>
+			</TabContextProvider>
+			</DashboardContextProvider>
+			</LayoutContextProvider>
+		</div>
+	);
 }
 
 export default App;

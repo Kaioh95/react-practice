@@ -48,7 +48,7 @@ module.exports = class BillingCycleController{
     static async summaryBillingCycles(req, res){
         try{
             const result = await BillingCycle.aggregate([{
-                $project: {credit: {$sum: "credits.value"}, debt: {$sum: "debts.value"}}
+                $project: {credit: {$sum: "$credits.value"}, debt: {$sum: "$debts.value"}}
             },{
                 $group: {_id: null, credit: {$sum: "$credit"}, debt: {$sum: "$debt"}}
             },{
