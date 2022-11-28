@@ -1,10 +1,10 @@
 import { useContext, useEffect } from "react";
 import { BillingCyclesContext } from "../../contexts/BillingCyclesContext";
-import { Table, ThLeft } from "./styles";
+import { BtnDanger, BtnWarning, Table, ThLeft } from "./styles";
 
 export default function BillingCycleList(){
     const billingCycleContext = useContext(BillingCyclesContext)
-    const { list, getList } = billingCycleContext
+    const { list, getList, showUpdate, showDelete} = billingCycleContext
 
     useEffect(() => {
         getList?.()
@@ -18,6 +18,14 @@ export default function BillingCycleList(){
                 <td>{bc.name}</td>
                 <td>{bc.month}</td>
                 <td>{bc.year}</td>
+                <td>
+                    <BtnWarning onClick={() => showUpdate?.(bc)}>
+                        <i className="fa fa-pencil"></i>
+                    </BtnWarning>
+                    <BtnDanger onClick={() => showDelete?.(bc)}>
+                        <i className="fa fa-trash-o"></i>
+                    </BtnDanger>
+                </td>
             </tr>
         ))
     }
@@ -30,6 +38,7 @@ export default function BillingCycleList(){
                         <ThLeft>Nome</ThLeft>
                         <ThLeft>Mês</ThLeft>
                         <ThLeft>Ano</ThLeft>
+                        <ThLeft style={{width: "125px"}}>Ações</ThLeft>
                     </tr>
                 </thead>
                 <tbody>

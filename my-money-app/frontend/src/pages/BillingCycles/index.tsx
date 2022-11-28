@@ -9,9 +9,12 @@ import TabContent from "../../components/Tab/TabsContent/TabContent";
 import { useContext, useEffect } from "react";
 import { TabContext } from "../../contexts/TabContext";
 import BillingCycleList from "../../components/BillingCycleList";
+import BillingCycleForm from "../../components/forms/BillingCycleForm";
+import { BillingCyclesContext } from "../../contexts/BillingCyclesContext";
 
 export default function BillingCycles(){
     const tabContext = useContext(TabContext)
+    const bcContext = useContext(BillingCyclesContext)
     const { selectTab, showTabs } = tabContext
 
     useEffect(() => {
@@ -25,18 +28,27 @@ export default function BillingCycles(){
             <Content>
                 <Tabs>
                     <TabsHeader>
-                        <TabHeader label="listar" icon="bars" target="tabList"/>
+                        <TabHeader label="Listar" icon="bars" target="tabList"/>
                         <TabHeader label="Incluir" icon="plus" target="tabCreate"/>
                         <TabHeader label="Alterar" icon="pencil" target="tabUpdate"/>
-                        <TabHeader label="excluir" icon="trash-o" target="tabDelete"/>
+                        <TabHeader label="Excluir" icon="trash-o" target="tabDelete"/>
                     </TabsHeader>
                     <TabsContent>
                         <TabContent id="tabList">
                             <BillingCycleList/>
                         </TabContent>
-                        <TabContent id="tabCreate"><h1>Incluir</h1></TabContent>
-                        <TabContent id="tabUpdate"><h1>Alterar</h1></TabContent>
-                        <TabContent id="tabDelete"><h1>Excluir</h1></TabContent>
+                        <TabContent id="tabCreate">
+                            <BillingCycleForm method={bcContext.create}
+                                submitClass="primary" submitLabel="Submit"/>
+                        </TabContent>
+                        <TabContent id="tabUpdate">
+                            <BillingCycleForm method={bcContext.update}
+                                submitClass="info" submitLabel="Update"/>
+                        </TabContent>
+                        <TabContent id="tabDelete">
+                            <BillingCycleForm method={bcContext.remove}
+                                readOnly submitClass="danger" submitLabel="Delete"/>
+                        </TabContent>
                     </TabsContent>
                 </Tabs>
             </Content>

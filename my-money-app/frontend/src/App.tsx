@@ -10,6 +10,9 @@ import MyMoneyRoutes from './pages/MyMoneyRoutes';
 import { DashboardContextProvider } from './contexts/DashboardContext';
 import { TabContextProvider } from './contexts/TabContext';
 import { BillingCyclesContextProvider } from './contexts/BillingCyclesContext';
+import { ToastContainer } from "react-toastify"
+
+import 'react-toastify/dist/ReactToastify.min.css';
 
 function App() {
 	return (
@@ -18,6 +21,7 @@ function App() {
 			<DashboardContextProvider>
 			<TabContextProvider>
 			<BillingCyclesContextProvider>
+				<ToastContainer/>
 				<Header/>
 				<div className='flexRow'>
 					<SideBar></SideBar>

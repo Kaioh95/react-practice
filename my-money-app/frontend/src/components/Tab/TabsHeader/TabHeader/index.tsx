@@ -20,7 +20,7 @@ export default function TabHeader(props: TabHeaderProps){
         <div>
             {visible ?
                 <TabLi className={selClass ? 'active' : ''}>
-                    <TabA href="javascript:;"
+                    <TabA href="#"
                         data-toggle="tab"
                         onClick={() => selectTab?.(props.target)}
                         data-target={props.target}>

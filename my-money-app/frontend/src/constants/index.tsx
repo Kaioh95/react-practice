@@ -14,5 +14,6 @@ export const tabActions={
 }
 
 export const billingCyclesActions={
-    BILLING_CYCLES_FETCHED: 'BILLING_CYCLES_FETCHED'
+    BILLING_CYCLES_FETCHED: 'BILLING_CYCLES_FETCHED',
+    BC_UPDATE: 'BC_UPDATE'
 }
