@@ -27,7 +27,9 @@ export default function BillingCycleForm(props: BillingCycleFormProps){
         props.method?.({...bcUp,
             name: values.name,
             month: values.month,
-            year: values.year
+            year: values.year,
+            credits: values.credits,
+            debts: values.debts
         })
         actions.resetForm()
     }
@@ -37,18 +39,20 @@ export default function BillingCycleForm(props: BillingCycleFormProps){
             name: bcContext.bcToUpdate.name,
             month: bcContext.bcToUpdate.month,
             year: bcContext.bcToUpdate.year,
+            credits: bcContext.bcToUpdate.credits,
+            debts: bcContext.bcToUpdate.debts
         },
         validationSchema: BillingCycleSchema,
         onSubmit,
     })
+    console.log(bcContext.bcToUpdate)
 
-    
     return(
         <BCForm onSubmit={formik.handleSubmit}>
             <BoxBody>
                 <LabelAndInput name="name" type="text"
                     readOnly={props.readOnly}
-                    placeholder="Name"
+                    placeholder="Insert Name"
                     value={formik.values.name}
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}/>
@@ -76,6 +80,7 @@ export default function BillingCycleForm(props: BillingCycleFormProps){
                         billingCycle={bcContext.bcToUpdate}
                         readOnly={props.readOnly}
                         formikValues={formik.values}
+                        formikErros={formik.errors}
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}/>
                 </CreditSection>

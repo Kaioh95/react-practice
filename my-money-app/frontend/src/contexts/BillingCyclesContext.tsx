@@ -93,8 +93,7 @@ export const BillingCyclesContextProvider = ({ children }: BillingCyclesContextP
         tabContext.selectTab?.('tabList')
         getList()
         
-        const initialValues = {name: '', month: '', year: ''} 
-        dispatch({type: billingCyclesActions.BC_UPDATE, payload: initialValues})
+        dispatch({type: billingCyclesActions.BC_UPDATE, payload: INITIAL_STATE})
     }
 
     return(

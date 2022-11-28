@@ -1,50 +1,56 @@
+import { FormikErrors, getIn } from "formik";
 import { ChangeEventHandler, FocusEventHandler } from "react";
 import { BcRequestType } from "../../../contexts/BillingCyclesContext";
 import Grid from "../../../Layout/Grid";
 import Input from "../Input";
-import { ThLeft } from "./styles";
+import { FormError, ThLeft } from "./styles";
 
 interface CreditListProps{
     cols: string
     billingCycle?: BcRequestType
     readOnly?: boolean
     formikValues?: BcRequestType
+    formikErros?: FormikErrors<BcRequestType> 
     onChange: ChangeEventHandler<HTMLInputElement>
     onBlur: FocusEventHandler<HTMLInputElement>
 }
 
 export default function CreditList(props: CreditListProps){
+    const rows = props.formikValues?.credits?.length 
+        ? props.formikValues?.credits : [{}] 
 
     function renderRows(){
-        return(
-            <tr key={props.billingCycle?.credits?.[0]?._id || '0'}>
+        return rows.map((item, index) => (
+            <tr key={item._id || '0'}>
                 <td>
-                    <Input 
+                    <Input
                         type="string"
-                        name="credits[0].name"
+                        name={`credits[${index}].name`}
                         readOnly={props.readOnly}
-                        placeholder={props.formikValues?.credits?.[0]?.name || 'Insert name'}
-                        value={props.formikValues?.credits?.[0]?.name || ''}
+                        placeholder={item.name || 'Insert name'}
+                        value={item.name || ''}
                         onChange={props.onChange}
                         onBlur={props.onBlur}
                         />
+                    <FormError>{getIn(props.formikErros, `credits[${index}].name`)}</FormError>
                 </td>
                 <td>
                     <Input
                         type="number"
-                        name="credits[0].value"
+                        name={`credits[${index}].value`}
                         readOnly={props.readOnly}
-                        placeholder={props.formikValues?.credits?.[0]?.value || 'Insert value'}
-                        value={props.formikValues?.credits?.[0]?.value || ''}
+                        placeholder={item.value || 'Insert value'}
+                        value={item.value || ''}
                         onChange={props.onChange}
                         onBlur={props.onBlur}
                         />
+                    <FormError>{getIn(props.formikErros, `credits[${index}].value`)}</FormError>
                 </td>
                 <td>
                     
                 </td>
             </tr>
-        )
+        ))
     }
 
     const fieldSetStyle = {

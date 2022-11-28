@@ -6,7 +6,9 @@ export const INITIAL_STATE={
     bcToUpdate: {
         name: '',
         month: '',
-        year: ''
+        year: '',
+        credits: [{}],
+        debts: [{}]
     }
 }
 
