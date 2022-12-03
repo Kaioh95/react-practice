@@ -7,8 +7,6 @@ export const INITIAL_STATE={
         name: '',
         month: '',
         year: '',
-        credits: [{}],
-        debts: [{}]
     }
 }
 

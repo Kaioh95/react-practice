@@ -1,6 +1,7 @@
+import { Form } from "formik"
 import styled from "styled-components"
 
-export const BCForm = styled.form`
+export const BCForm = styled(Form)`
     padding: 0;
 `
 
@@ -93,6 +94,6 @@ export const BtnDanger = styled.button`
     }
 `
 
-export const CreditSection = styled.section`
-    display: flex;
+export const ItemListSection = styled.section`
+    display: grid;
 `

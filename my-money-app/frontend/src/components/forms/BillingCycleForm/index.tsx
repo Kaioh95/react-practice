@@ -1,10 +1,11 @@
-import { useFormik, FormikHelpers, FormikValues } from "formik";
+import { Formik, FormikHelpers, FormikValues, Field, ErrorMessage} from "formik";
 import { useContext } from "react";
 import { BcRequestType, BillingCyclesContext } from "../../../contexts/BillingCyclesContext";
 import { BillingCycleSchema } from "../../../schemas/BillingCycleSchema";
-import CreditList from "../CreditList";
+import Summary from "../../Summary";
+import ItemList from "../ItemList";
 import LabelAndInput from "../LabelAndInput";
-import { BCForm, BoxBody, BoxFooter, SubmitButton, FormError, BtnDanger, CreditSection } from "./styles";
+import { BCForm, BoxBody, BoxFooter, SubmitButton, FormError, BtnDanger, ItemListSection } from "./styles";
 
 interface BillingCycleFormProps{
     method?: (values: BcRequestType) => void
@@ -34,59 +35,67 @@ export default function BillingCycleForm(props: BillingCycleFormProps){
         actions.resetForm()
     }
 
-    const formik = useFormik({
-        initialValues:{
-            name: bcContext.bcToUpdate.name,
-            month: bcContext.bcToUpdate.month,
-            year: bcContext.bcToUpdate.year,
-            credits: bcContext.bcToUpdate.credits,
-            debts: bcContext.bcToUpdate.debts
-        },
-        validationSchema: BillingCycleSchema,
-        onSubmit,
-    })
-    console.log(bcContext.bcToUpdate)
+    function calcSum(values: Array<{[key: string]: string}>){
+        const sum = (t: number, v: number) => t + v
+        return values.map(c => +c.value || 0).reduce(sum)
+    }
 
     return(
-        <BCForm onSubmit={formik.handleSubmit}>
+        <Formik
+            initialValues={{
+                name: bcContext.bcToUpdate.name,
+                month: bcContext.bcToUpdate.month,
+                year: bcContext.bcToUpdate.year,
+                credits: bcContext.bcToUpdate.credits,
+                debts: bcContext.bcToUpdate.debts
+            }}
+            validationSchema={BillingCycleSchema}
+            onSubmit={onSubmit}
+        >
+        {({values}) => (
+        <BCForm>
             <BoxBody>
-                <LabelAndInput name="name" type="text"
+                <Field name="name"
+                    type="text"
                     readOnly={props.readOnly}
                     placeholder="Insert Name"
-                    value={formik.values.name}
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}/>
-                <FormError>{formik.errors.name}</FormError>
+                    as={LabelAndInput}/>
+                <ErrorMessage component={FormError} name="name"/>
 
-                <LabelAndInput name="month" type="number"
+                <Field name="month"
+                    type="number"
                     readOnly={props.readOnly}
-                    placeholder="Insert month"
-                    value={formik.values.month}
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}/>
-                <FormError>{formik.errors.month}</FormError>
+                    placeholder="Insert Month"
+                    as={LabelAndInput}/>
+                <ErrorMessage component={FormError} name="month"/>
                 
-                <LabelAndInput name="year" type="number"
+                <Field name="year"
+                    type="number"
                     readOnly={props.readOnly}
-                    placeholder="Insert year"
-                    value={formik.values.year}
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}/>
-                <FormError>{formik.errors.year}</FormError>
+                    placeholder="Insert Year"
+                    as={LabelAndInput}/>
+                <ErrorMessage component={FormError} name="year"/>
+
+                <Summary 
+                    credit={calcSum(values.credits || [{}])} 
+                    debt={calcSum(values.debts || [{}])}/>
                 
-                <CreditSection>
-                    <CreditList 
+                <ItemListSection>
+                    <ItemList 
                         cols="12 6"
-                        billingCycle={bcContext.bcToUpdate}
-                        readOnly={props.readOnly}
-                        formikValues={formik.values}
-                        formikErros={formik.errors}
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur}/>
-                </CreditSection>
+                        field="credits"
+                        legend="Créditos"
+                        readOnly={props.readOnly}/>
+                    <ItemList 
+                        cols="12 6"
+                        field="debts"
+                        legend="Déditos"
+                        showStatus
+                        readOnly={props.readOnly}/>
+                </ItemListSection>
             </BoxBody>
             <BoxFooter>
-                <SubmitButton disabled={formik.isSubmitting}
+                <SubmitButton
                     type="submit"
                     className={props.submitClass}
                 >
@@ -94,6 +103,7 @@ export default function BillingCycleForm(props: BillingCycleFormProps){
                 </SubmitButton>
                 <BtnDanger type="button" onClick={() => bcContext.init?.()}>Cancelar</BtnDanger>
             </BoxFooter>
-        </BCForm>
+        </BCForm>)}
+        </Formik>
     )
 }
