@@ -4,6 +4,23 @@ export const ThLeft = styled.th`
     text-align: left;
 `
 
+export const Select = styled.select`
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    height: 30px;
+`
+
+export const Table = styled.table`
+    caption-side: bottom;
+    margin-bottom: 1rem;
+    width: 100%;
+    max-width: 100%;
+
+    & td{
+        padding: 4px 2px;
+    }
+`
+
 export const FieldSet = styled.div`
     padding: 0 8px;
     border: 0;

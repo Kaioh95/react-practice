@@ -35,9 +35,9 @@ export default function BillingCycleForm(props: BillingCycleFormProps){
         actions.resetForm()
     }
 
-    function calcSum(values: Array<{[key: string]: string}>){
+    function calcSum(values: Array<{[key: string]: string}> = [{value:"0"}]){
         const sum = (t: number, v: number) => t + v
-        return values.map(c => +c.value || 0).reduce(sum)
+        return values.map(c => +c.value || 0).reduce(sum, 0)
     }
 
     return(
@@ -77,8 +77,8 @@ export default function BillingCycleForm(props: BillingCycleFormProps){
                 <ErrorMessage component={FormError} name="year"/>
 
                 <Summary 
-                    credit={calcSum(values.credits || [{}])} 
-                    debt={calcSum(values.debts || [{}])}/>
+                    credit={calcSum(values.credits)} 
+                    debt={calcSum(values.debts)}/>
                 
                 <ItemListSection>
                     <ItemList 

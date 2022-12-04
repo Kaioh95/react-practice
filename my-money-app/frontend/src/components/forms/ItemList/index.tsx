@@ -1,7 +1,7 @@
 import { connect, ErrorMessage, Field, FieldArray, FieldArrayRenderProps } from "formik";
 import Grid from "../../../Layout/Grid";
 import Input from "../Input";
-import { Button, FieldSet, FormError, ThLeft } from "./styles";
+import { Button, FieldSet, FormError, Select, Table, ThLeft } from "./styles";
 
 interface ItemListProps{
     cols: string
@@ -15,13 +15,6 @@ interface ItemListProps{
 const ItemList = (props: ItemListProps) => {
     const rows = props.formik?.values?.[`${props.field}`]?.length > 0
         ? props.formik?.values?.[`${props.field}`] : [{}]
-    
-    /*function add(index: number, item:{[key: string]: string}={}){
-        if(!props.readOnly){
-            console.log(index, item)
-        }
-    }
-    */
 
     function renderRows(arrHelp: FieldArrayRenderProps){
         return rows.map((item: {[key: string]: string}, index: number) => (
@@ -47,11 +40,15 @@ const ItemList = (props: ItemListProps) => {
                 {props.showStatus &&
                     <td>
                         <Field 
-                            type="string"
-                            as={Input}
+                            type="input"
+                            as={Select}
                             name={`${props.field}[${index}].status`}
                             readOnly={props.readOnly}
-                            placeholder={item.value || 'Insert status'}/>
+                            placeholder={item.value || 'Insert status'}>
+                                <option value="PAGO">Pago</option>
+                                <option value="PEDENTE">Pedente</option>
+                                <option value="AGENDADO">Agendado</option>
+                        </Field>
                         <ErrorMessage name={`${props.field}[${index}].status`} component={FormError}/>
                     </td>
                 }
@@ -81,7 +78,7 @@ const ItemList = (props: ItemListProps) => {
                     <>
                     <legend style={{fontSize: "25px"}}>{props.legend}</legend>
                     <hr/>
-                    <table>
+                    <Table>
                         <thead>
                             <tr>
                                 <ThLeft>Nome</ThLeft>
@@ -93,7 +90,7 @@ const ItemList = (props: ItemListProps) => {
                         <tbody>
                             {renderRows(arrayHelpers)}
                         </tbody>
-                    </table>
+                    </Table>
                     </>
                 )}/>
             </FieldSet>

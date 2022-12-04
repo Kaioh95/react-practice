@@ -11,7 +11,7 @@ export default function MenuItem(props: MenuItemProps){
     return(
         <li>
             <ItemLink href={props.path}>
-                <i className={`fa fa-${props.icon}`}></i> {props.label}
+                <i className={`fa fa-${props.icon}`}></i> <span>{props.label}</span>
             </ItemLink>
         </li>
     )

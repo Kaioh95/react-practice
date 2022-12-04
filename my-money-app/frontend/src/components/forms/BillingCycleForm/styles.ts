@@ -95,5 +95,6 @@ export const BtnDanger = styled.button`
 `
 
 export const ItemListSection = styled.section`
-    display: grid;
+    display: flex;
+    flex-wrap: wrap;
 `
