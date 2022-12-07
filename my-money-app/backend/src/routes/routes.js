@@ -1,5 +1,8 @@
 const router = require('express').Router()
+const auth = require('../helpers/auth')
 const billingCycleController = require('../controllers/billingCycleController')
+
+router.use(auth)
 
 router.post("/billingCycle", billingCycleController.register)
 router.get("/billingCycle", billingCycleController.getAll)
