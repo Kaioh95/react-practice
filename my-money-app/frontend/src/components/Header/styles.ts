@@ -7,6 +7,12 @@ export const HeaderBar = styled.header`
     height: 2.4rem;
 `
 
+export const HeaderContent = styled.div`
+    display: flex;
+    justify-content: space-between;
+    flex-grow: 1;
+`
+
 export const HeaderLogo = styled.div`
     background-color: #03396c!important;
     padding: 0.5rem 0;

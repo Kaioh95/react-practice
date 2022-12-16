@@ -45,6 +45,7 @@ const ItemList = (props: ItemListProps) => {
                             name={`${props.field}[${index}].status`}
                             readOnly={props.readOnly}
                             placeholder={item.value || 'Insert status'}>
+                                <option value="">Sel Status</option>
                                 <option value="PAGO">Pago</option>
                                 <option value="PEDENTE">Pedente</option>
                                 <option value="AGENDADO">Agendado</option>

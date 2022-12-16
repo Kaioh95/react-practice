@@ -1,7 +1,8 @@
 import { useRef, useContext } from 'react'
-import { HeaderBar, HeaderLogo, HeaderLink, NavButton } from "./styles"
+import { HeaderBar, HeaderLogo, HeaderLink, NavButton, HeaderContent } from "./styles"
 import { LayoutContext } from '../../contexts/LayoutContext'
 import "./styles.css"
+import LoginArea from '../LoginArea'
 
 const logoMini = <span><b>My</b>M</span>
 
@@ -35,9 +36,12 @@ export default function Header(props: any){
                     {logoSize ? logoLg : logoMini}
                 </HeaderLink>
             </HeaderLogo>
-            <NavButton onClick={changeLogo}>
-                <i className="fa fa-bars"></i>
-            </NavButton>
+            <HeaderContent>
+                <NavButton onClick={changeLogo}>
+                    <i className="fa fa-bars"></i>
+                </NavButton>
+                <LoginArea/>
+            </HeaderContent>
         </HeaderBar>
     )
 }

@@ -1,4 +1,5 @@
 export const URL = "http://localhost:3003/api"
+export const OAPI_URL = "http://localhost:3003/oapi"
 
 export const initialState = {
     summary: {credit: 0, debt: 0}
