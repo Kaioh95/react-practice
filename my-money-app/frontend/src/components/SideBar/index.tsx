@@ -3,7 +3,11 @@ import { AsideSideBar } from "./styles"
 import { LayoutContext } from "../../contexts/LayoutContext"
 import Menu from "../Menu"
 
-export default function SideBar(){
+interface SideBarProps{
+    className?: string
+}
+
+export default function SideBar(props: SideBarProps){
     const context = useContext(LayoutContext)
     const { logoSize } = context
     const asideRef = useRef<HTMLDivElement>(null)
@@ -20,10 +24,8 @@ export default function SideBar(){
     }, [logoSize])
     
     return(
-        <AsideSideBar ref={asideRef}>
-            <section>
+        <AsideSideBar className={props.className} ref={asideRef}>
                 <Menu/>
-            </section>
         </AsideSideBar>
     )
 }

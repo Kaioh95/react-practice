@@ -3,22 +3,19 @@ import Footer from "../components/Footer";
 import Header from "../components/Header";
 import SideBar from "../components/SideBar";
 import MyMoneyRoutes from "./MyMoneyRoutes";
-import "../styles/App.css"
 
 export default function AppPage(){
 
     return(
-        <>
-        <Header/>
-        <div className='flexRow'>
-            <SideBar></SideBar>
-            <div className='container'>
+        <div className="AppLayout">
+            <Header className="header"/>
+            <SideBar className="sidebar"/>
+            <main className="content">
                 <Router>
                     <MyMoneyRoutes/>
                 </Router>
-                <Footer/>
-            </div>
+            </main>
+            <Footer className="footer"/>
         </div>
-        </>
     )
 }

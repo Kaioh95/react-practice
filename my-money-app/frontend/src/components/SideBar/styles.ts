@@ -1,9 +1,15 @@
 import styled from "styled-components"
 
-export const AsideSideBar = styled.div`
+export const AsideSideBar = styled.aside`
     background-color: #333!important;
     transition: all 0.5s;
-    width: 190px;
+    height: 100%;
     overflow: hidden;
-    flex-wrap: nowrap;
+    //width: 190px;
+    //flex-wrap: nowrap;
+    @media(max-width: 768px){
+        width: 100%!important;
+        display: flex;
+        align-items: center;
+    }
 `

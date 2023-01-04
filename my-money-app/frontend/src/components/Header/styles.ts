@@ -4,7 +4,7 @@ export const HeaderBar = styled.header`
     color: #fff!important;
     background-color: #005b96!important;
     display: flex;
-    height: 2.4rem;
+    //height: 2.4rem;
 `
 
 export const HeaderContent = styled.div`

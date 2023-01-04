@@ -22,7 +22,7 @@ export default function MenuTree(props: MenuTreeProps){
         <li>
             <ItemLink onClick={changeDisplay}>
                 <i className={`fa fa-${props.icon}`}></i> <span>{props.label}</span>
-                <i className={`fa fa-angle-left`} style={{float: "right"}}></i>
+                <i className={`fa fa-angle-left`} style={{float: "right", margin: "3px 0"}}></i>
             </ItemLink>
             <UlTree style={{ display: menuDisplay }}>
                 {props.children}

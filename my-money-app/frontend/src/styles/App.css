@@ -1,18 +1,69 @@
 .App {
-  /*display: flex;
-  flex-direction: column;*/
-  min-height: 100vh;
-  height: 100%;
+	/*display: flex;
+	flex-direction: column;*/
+	min-height: 100vh;
+	height: 100%;
 }
 
-.flexRow{
-  display: flex;
-  width: 100%;
-  min-height: 100vh;
-  height: 100%;
+:root{
+	--header-height: 39px;
+	--menu-top-height: 80px;
+	--aside-width: 190px;
+	--footer-height: 39px;
+
+	--shadow:
+		0 2px 23px 0 rgba(0, 0, 0, 0.1),
+		0 2px 49px 0 rgba(0, 0, 0, 0.06);
 }
 
-.container{
-  position: relative;
-  flex-grow: 1;
+.AppLayout{
+	margin: 0px;
+	display: grid;
+
+	grid-template-columns: var(--aside-width) 1fr;
+	grid-template-rows: 
+		var(--header-height)
+		1fr
+		var(--footer-height);
+
+	grid-template-areas:
+		"header header"
+		"sidebar content"
+		"sidebar footer";
+
+	height: 100vh;
 }
+
+header.header{
+	grid-area: header;
+}
+
+aside.sidebar{
+	grid-area: sidebar;
+}
+
+main.content{
+	grid-area: content;
+}
+
+footer.footer{
+	grid-area: footer;
+}
+
+@media(max-width: 768px){
+	.AppLayout{
+		grid-template-rows: 
+			var(--header-height)
+			var(--menu-top-height)
+			1fr
+			var(--footer-height);
+
+		grid-template-columns: 1fr;
+		
+		grid-template-areas:
+			"header"
+			"sidebar"
+			"content"
+			"footer";
+	}
+} 

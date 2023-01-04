@@ -11,7 +11,11 @@ const logoLg = <span>
     <b> My</b> Money
 </span>
 
-export default function Header(props: any){
+interface HeaderProps{
+    className?: string
+}
+
+export default function Header(props: HeaderProps){
     const context = useContext(LayoutContext)
     const { logoSize, changeLogoSize } = context
     const logoRef = useRef<HTMLDivElement>(null)
@@ -30,7 +34,7 @@ export default function Header(props: any){
     }
 
     return(
-        <HeaderBar>
+        <HeaderBar className={props.className}>
             <HeaderLogo ref={logoRef}>
                 <HeaderLink href="/#/">
                     {logoSize ? logoLg : logoMini}
