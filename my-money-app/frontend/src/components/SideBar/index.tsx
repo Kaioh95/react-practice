@@ -11,10 +11,10 @@ export default function SideBar(){
     useEffect(() => {
         if(asideRef){
             if(logoSize){
-                asideRef.current!.style.width = '12rem'
+                asideRef.current!.style.width = '190px'
             }
             else{
-                asideRef.current!.style.width = '3rem'
+                asideRef.current!.style.width = '0'
             }
         }
     }, [logoSize])

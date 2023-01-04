@@ -16,8 +16,8 @@ export const HeaderContent = styled.div`
 export const HeaderLogo = styled.div`
     background-color: #03396c!important;
     padding: 0.5rem 0;
-    transition: all 1s;
-    width: 12rem;
+    transition: all 0.5s;
+    width: 190px;
     overflow: hidden;
 `
 

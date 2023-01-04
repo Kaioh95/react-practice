@@ -20,10 +20,10 @@ export default function Header(props: any){
     function changeLogo(){
         if(logoRef){
             if(logoSize){
-                logoRef.current!.style.width = '3rem'
+                logoRef.current!.style.width = '0'
             }
             else{
-                logoRef.current!.style.width = '12rem'
+                logoRef.current!.style.width = '190px'
             }
             changeLogoSize()
         }

@@ -2,8 +2,8 @@ import styled from "styled-components"
 
 export const AsideSideBar = styled.div`
     background-color: #333!important;
-    transition: all 1s;
-    width: 12rem;
+    transition: all 0.5s;
+    width: 190px;
     overflow: hidden;
     flex-wrap: nowrap;
 `
