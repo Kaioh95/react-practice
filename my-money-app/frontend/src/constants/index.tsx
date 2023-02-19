@@ -1,5 +1,6 @@
-export const URL = "http://localhost:3003/api"
-export const OAPI_URL = "http://localhost:3003/oapi"
+const baseURL = process.env.REACT_APP_BACK_URL || "http://localhost:3003"
+export const URL = `${baseURL}/api`
+export const OAPI_URL = `${baseURL}/oapi`
 
 export const initialState = {
     summary: {credit: 0, debt: 0}
