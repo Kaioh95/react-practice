@@ -20,12 +20,12 @@ export default function LoginArea(){
             <MenuUl>
                 <LiHeader onMouseLeave={() => changeOpen()}>
                     <MenuA onClick={() => changeOpen()}>
-                        <MenuImg w='25px' h='25px' src="http://lorempixel.com.br/160/160" alt="User Image"></MenuImg>
+                        <MenuImg w='25px' h='25px' src="https://picsum.photos/200" alt="User Image"></MenuImg>
                         <span>{user.email}</span>
                     </MenuA>
                     <DropDownUl className={open? 'open' : ''}>
                         <Li>
-                            <MenuImg center w='80px' h='80px' src="http://lorempixel.com.br/160/160" alt="User Image"></MenuImg>
+                            <MenuImg center w='80px' h='80px' src="https://picsum.photos/200" alt="User Image"></MenuImg>
                             <p>{user.name}</p>
                             <p>{user.email}</p>
                         </Li>
